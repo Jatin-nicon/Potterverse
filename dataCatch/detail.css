@@ -42,14 +42,52 @@ body {
     margin-top: 10px;
 }
 
-/* Main Content Styling */
+/* Character Details Section */
 .main-content {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap:10px;
+    gap:5px;
     /* height: 60vh; */
+}
+
+.main-content h3 {
+    font-size: x-large;
+}
+
+.character-card {
+    background: #4d1a3f;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    gap: 20px;
+    max-width: 600px;
+}
+
+.character-image img {
+    width: 300px;
+    height: 400px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+}
+
+.character-info {
+    text-align: left;
+    flex: 1;
+}
+
+.character-info h2 {
+    font-size: 1.8rem;
+    color: #ffc107;
+    margin-bottom: 10px;
+}
+
+.character-info p {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #d1c4e9;
 }
 
 .search-box {
@@ -114,7 +152,6 @@ body {
     color: #ffffff;
 }
 
-
 /* Footer Styling */
 .footer {
     margin-top: 40px;
@@ -126,13 +163,6 @@ body {
     font-family: 'Cormorant Garamond', serif;
 }
 
-.data {
-    width: 100%;
-    height: 200px;
-    background-color: #4d1a3f;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-}
 
 @media (max-width:500px) {
     .search-box {
