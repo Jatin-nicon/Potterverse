@@ -21,7 +21,7 @@ function handleSearch() {
     search.value = ''
     if (query) {
         // Redirect to the dynamic page with the query as a URL parameter
-        window.location.href = `Character/showdetail.html?query=${encodeURIComponent(query)}&type=${encodeURIComponent(type)}`;
+        window.location.href = `dataCatch/showdetail.html?query=${encodeURIComponent(query)}&type=${encodeURIComponent(type)}`;
     } else {
         alert("Please enter a search query!");
     }
