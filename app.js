@@ -4,8 +4,6 @@ let header = document.querySelector('header')
 let searchButton = document.querySelector('#search-button')
 
 
-let url = 'https://api.potterdb.com/v1/'
-
 function changeHeaderHeight() {
     let height = header.offsetHeight
     let mainContent = document.querySelector('.main-content')
@@ -21,7 +19,7 @@ function handleSearch() {
     search.value = ''
     if (query) {
         // Redirect to the dynamic page with the query as a URL parameter
-        window.location.href = `/Potterverse/dataCatch/showdetail.html?query=${encodeURIComponent(query)}&type=${encodeURIComponent(type)}`;
+        window.location.href = `/Potterverse/searchQuery/search.html?query=${encodeURIComponent(query)}&type=${encodeURIComponent(type)}`;
     } else {
         alert("Please enter a search query!");
     }
