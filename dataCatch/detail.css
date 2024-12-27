@@ -62,13 +62,15 @@ body {
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     display: flex;
-    gap: 20px;
-    max-width: 600px;
+    flex-direction: column;
+    /* gap: 20px; */
+    max-width: 1000px;
 }
 
 .character-image img {
     width: 300px;
     height: 400px;
+    object-fit: contain;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
 }
@@ -78,10 +80,11 @@ body {
     flex: 1;
 }
 
-.character-info h2 {
+.character-info h3 {
     font-size: 1.8rem;
     color: #ffc107;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .character-info p {

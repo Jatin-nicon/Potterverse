@@ -1,11 +1,11 @@
-let search = document.querySelector('#search')
+let search = document.querySelector('#search');
 let searchType = document.querySelector('#search-type')
 let header = document.querySelector('header')
 let searchButton = document.querySelector('#search-button')
 
 async function catchData() {
     const urlParams = new URLSearchParams(window.location.search);
-    const query = urlParams.get('query'); // The search query
+    const query = urlParams.get('query').split(' '); // The search query
     const type = urlParams.get('type');
     var url = `https://api.potterdb.com/v1/${type}?filter[name_cont]=${query}`
     
@@ -26,41 +26,149 @@ async function catchData() {
         let data = await res.json()
         let num = await data.data.length
         let h2 = document.querySelector('h2')
-        h2.innerHTML = `Search Result for <i>'${query}'</i>`
-        
-        for (let i=0; i<num; i++) {
-            let showSearch = document.createElement('div')
-            let showDetail = document.createElement('div')
 
-            showDetail.style.textAlign = 'left'
-            showDetail.style.paddingLeft = '2rem'
-
-            let details = document.createElement('p')
-            let mainContent = document.querySelector('.main-content')
-            showSearch.classList.add('card')
+        if (data.data.length == 0) {
+            h2.innerHTML = `No Result for <i>'${query}'</i> in '${type}'`
+        } else {
+            h2.innerHTML = `Search Result for <i>'${query}'</i> in '${type}'`
             
-            if (type == 'characters') {
-                items = await data.data[i]
-                let name = items.attributes.name
-                let species = await items.attributes.species
-                let image = await items.attributes.image
-                let img = document.createElement('img')
-                details.innerHTML = `<br><b>Name:</b> ${name} <br><b>Species:</b> ${species}`
+            for (let i=0; i<num; i++) {
+                let showSearch = document.createElement('div')
+                let showDetail = document.createElement('div')
+
+                showDetail.style.textAlign = 'left'
+                showDetail.style.paddingLeft = '2rem'
+
+                let details = document.createElement('p')
+                let mainContent = document.querySelector('.main-content')
+                showSearch.classList.add('card')
                 
-                if (image == null) {
-                    img.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/495px-No-Image-Placeholder.svg.png?20200912122019'
-                } else {
-                    img.src = image
+                if (type == 'characters') {
+                    items = await data.data[i]
+                    let name = items.attributes.name
+                    let species = await items.attributes.species
+                    let image = await items.attributes.image
+                    let id = await items.id
+                    let img = document.createElement('img')
+                    details.innerHTML = `<br><b>Name:</b> ${name} <br><b>Species:</b> ${species}`
+                    
+                    if (image == null) {
+                        img.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/495px-No-Image-Placeholder.svg.png?20200912122019'
+                    } else {
+                        img.src = image
+                    }
+                    showDetail.insertAdjacentElement('beforeend', details)
+                    showSearch.insertAdjacentElement('beforeend', img)
+                    showSearch.insertAdjacentElement('beforeend', showDetail)
+                    
+                    mainContent.insertAdjacentElement('beforeend', showSearch)
+                    showSearch.addEventListener('click', () => {
+                        window.location.href = `../dataCatch/showdetail.html?type=${encodeURIComponent(type)}&id=${encodeURIComponent(id)}`;
+                    })
+                    
+                } else if (type == 'movies') {
+                    items = await data.data[i]
+                    let name = items.attributes.title
+                    let runTime = items.attributes.running_time
+                    let image = await items.attributes.poster
+                    let id = await items.id
+                    let img = document.createElement('img')
+                    
+                    details.innerHTML = `<br><b>Title:</b> ${name} <br><b>Run Time:</b> ${runTime}`
+
+                    if (image == null) {
+                        img.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/495px-No-Image-Placeholder.svg.png?20200912122019'
+                    } else {
+                        img.src = image
+                    }
+                    
+                    showDetail.insertAdjacentElement('beforeend', details)
+                    showSearch.insertAdjacentElement('beforeend', img)
+                    showSearch.insertAdjacentElement('beforeend', showDetail)
+                    
+                    mainContent.insertAdjacentElement('beforeend', showSearch)
+                    showSearch.addEventListener('click', () => {
+                        window.location.href = `../dataCatch/showdetail.html?type=${encodeURIComponent(type)}&id=${encodeURIComponent(id)}`;
+                    })
+                } else if (type == 'books') {
+                    items = await data.data[i]
+                    
+                    let name = items.attributes.title
+                    let releaseDate = items.attributes.release_date
+                    let image = await items.attributes.cover
+                    let id = await items.id
+                    let img = document.createElement('img')
+
+                    details.innerHTML = `<br><b>Title:</b> ${name} <br><b>Release Time:</b> ${releaseDate}`
+
+                    if (image == null) {
+                        img.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/495px-No-Image-Placeholder.svg.png?20200912122019'
+                    } else {
+                        img.src = image
+                    }
+                    
+                    showDetail.insertAdjacentElement('beforeend', details)
+                    showSearch.insertAdjacentElement('beforeend', img)
+                    showSearch.insertAdjacentElement('beforeend', showDetail)
+                    
+                    mainContent.insertAdjacentElement('beforeend', showSearch)
+                    showSearch.addEventListener('click', () => {
+                        window.location.href = `../dataCatch/showdetail.html?type=${encodeURIComponent(type)}&id=${encodeURIComponent(id)}`;
+                    })
+                } else if (type == 'spells') {
+                    items = await data.data[i]
+                    let name = items.attributes.name
+                    let effect = items.attributes.effect
+                    let image = await items.attributes.image
+                    let id = await items.id
+                    let img = document.createElement('img')
+
+                    details.innerHTML = `<br><b>Name:</b> ${name} <br><b>Effect:</b> ${effect}`
+
+                    if (image == null) {
+                        img.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/495px-No-Image-Placeholder.svg.png?20200912122019'
+                    } else {
+                        img.src = image
+                    }
+                    
+                    showDetail.insertAdjacentElement('beforeend', details)
+                    showSearch.insertAdjacentElement('beforeend', img)
+                    showSearch.insertAdjacentElement('beforeend', showDetail)
+                    
+                    mainContent.insertAdjacentElement('beforeend', showSearch)
+                    showSearch.addEventListener('click', () => {
+                        window.location.href = `../dataCatch/showdetail.html?type=${encodeURIComponent(type)}&id=${encodeURIComponent(id)}`;
+                    })
+                } else if (type == 'potions') {
+                    items = await data.data[i]
+                    let name = items.attributes.name
+                    let effect = items.attributes.effect
+                    let image = await items.attributes.image
+                    let id = await items.id
+                    let img = document.createElement('img')
+                    
+                    details.innerHTML = `<br><b>Name:</b> ${name} <br><b>Effect:</b> ${effect}`
+
+                    if (image == null) {
+                        img.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/495px-No-Image-Placeholder.svg.png?20200912122019'
+                    } else {
+                        img.src = image
+                    }
+                    
+                    showDetail.insertAdjacentElement('beforeend', details)
+                    showSearch.insertAdjacentElement('beforeend', img)
+                    showSearch.insertAdjacentElement('beforeend', showDetail)
+                    
+                    mainContent.insertAdjacentElement('beforeend', showSearch)
+                    showSearch.addEventListener('click', () => {
+                        window.location.href = `../dataCatch/showdetail.html?type=${encodeURIComponent(type)}&id=${encodeURIComponent(id)}`;
+                    })
+
                 }
-                showDetail.insertAdjacentElement('beforeend', details)
-                showSearch.insertAdjacentElement('beforeend', img)
-                showSearch.insertAdjacentElement('beforeend', showDetail)
                 
-                mainContent.insertAdjacentElement('beforeend', showSearch)
-                console.log(data.data[0].attributes)
             }
-            
         }
+        
     } catch {
         console.log('Some error Occured')
     }
