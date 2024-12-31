@@ -20,7 +20,7 @@ function handleSearch() {
     search.value = ''
     if (query) {
         // Redirect to the dynamic page with the query as a URL parameter
-        window.location.href = `searchQuery/search.html?query=${encodeURIComponent(query)}&type=${encodeURIComponent(type)}`;
+        window.location.href = `/Potterverse/searchQuery/search.html?query=${encodeURIComponent(query)}&type=${encodeURIComponent(type)}`;
     } else {
         alert("Please enter a search query!");
     }
@@ -239,7 +239,7 @@ async function loadCharacters() {
 
             // Add click event listener for navigation
             container.addEventListener('click', () => {
-                window.location.href = `/dataCatch/showdetail.html?type=characters&id=${encodeURIComponent(selectID)}`;
+                window.location.href = `/Potterverse/dataCatch/showdetail.html?type=characters&id=${encodeURIComponent(selectID)}`;
             });
         } else {
             i = 0; // Exit loop if charactersID is empty
@@ -299,7 +299,7 @@ async function loadSpells() {
 
             // Add click event listener for navigation
             container.addEventListener('click', () => {
-                window.location.href = `/dataCatch/showdetail.html?type=spells&id=${encodeURIComponent(selectID)}`;
+                window.location.href = `/Potterverse/dataCatch/showdetail.html?type=spells&id=${encodeURIComponent(selectID)}`;
             });
         } else {
             i = 0; // Exit loop if charactersID is empty
@@ -312,9 +312,10 @@ async function loadSpells() {
 async function loadMovies() {
     let mainDiv = document.querySelector('#movies button');
 
-    let i = 8;
+    let i = 11;
     while (i != 0) {
         if (moviesID.length != 0) {
+            console.log('movies')
             // Generate a random position and fetch character details
             let position = Math.floor(Math.random() * moviesID.length);
             let selectID = moviesID[position];
@@ -358,7 +359,7 @@ async function loadMovies() {
 
             // Add click event listener for navigation
             container.addEventListener('click', () => {
-                window.location.href = `/dataCatch/showdetail.html?type=movies&id=${encodeURIComponent(selectID)}`;
+                window.location.href = `/Potterverse/dataCatch/showdetail.html?type=movies&id=${encodeURIComponent(selectID)}`;
             });
         } else {
             i = 0; // Exit loop if charactersID is empty
@@ -420,7 +421,7 @@ async function loadBooks() {
 
             // Add click event listener for navigation
             container.addEventListener('click', () => {
-                window.location.href = `/dataCatch/showdetail.html?type=books&id=${encodeURIComponent(selectID)}`;
+                window.location.href = `/Potterverse/dataCatch/showdetail.html?type=books&id=${encodeURIComponent(selectID)}`;
             });
 
         } else {
@@ -482,7 +483,7 @@ async function loadPotions() {
 
             // Add click event listener for navigation
             container.addEventListener('click', () => {
-                window.location.href = `/dataCatch/showdetail.html?type=potions&id=${encodeURIComponent(selectID)}`;
+                window.location.href = `/Potterverse/dataCatch/showdetail.html?type=potions&id=${encodeURIComponent(selectID)}`;
             });
 
         } else {
